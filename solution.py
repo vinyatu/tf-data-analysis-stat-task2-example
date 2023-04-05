@@ -12,6 +12,10 @@ def solution(p: float, x: np.array) -> tuple:
     #scale = np.sqrt(np.var(x)) / np.sqrt(len(x))
     #return loc - scale * norm.ppf(1 - alpha / 2), \
     #       loc - scale * norm.ppf(alpha / 2)
-    return (max(x) - 0.068) / (1 - alpha), \
-           (max(x) - 0.068) / alpha
-            
+    xmin = x.min()
+    xmax = x.max()
+    n = len(x)
+    c = np.power(alpha, -1/(n-1)) - 1
+    R = xmax - xmin
+    xmax + c * R
+    return xmax, xmax + c * R
